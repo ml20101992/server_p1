@@ -32,7 +32,7 @@ class DatabaseController{
         }
     }
 
-    public function selectObject($query, $parameters, $class){
+    public function select_object($query, $parameters, $class){
         // var_dump($query);
         // return;
 
@@ -43,7 +43,7 @@ class DatabaseController{
         try{
             //check if there are returns
             $result = $statement->fetch();
-            if(sizeof($result) === 0 || $result === false){             //no results
+            if($result === false){             //no results
                 return false;
             }
             else{                                                       //results found
@@ -65,10 +65,12 @@ class DatabaseController{
         $statement->execute($parameters);
 
         try{
-            return $statement->fetch();
+            $statement->fetch();
         }catch(\PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
+
+        return true;
 
     }
 }

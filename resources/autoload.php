@@ -6,7 +6,8 @@ spl_autoload_register(function($class){
     
     $prefixes = [
         "DatabaseController"        => "/controllers/db_controllers/",
-        "DatabaseOperations"        => "/controllers/db_controllers/",
+        "DatabaseHelpers"        => "/controllers/db_controllers/",
+        "UserController"            => "/controllers/model_controllers/",
         "Model"                     => "/models/",
         "User"                      => "/models/"
     ];
