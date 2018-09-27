@@ -42,6 +42,24 @@ class User implements Model{
         return $config;
     }
 
+    public function get_username(){
+        return $this->username;
+    }
 
+    public function get_role(){
+        return $this->role;
+    }
+
+    public function get_pw_hash(){
+        return $this->password;
+    }
+
+    public function get_team(){
+        return $this->team;
+    }
+
+    public function get_league(){
+        return $this->league;
+    }
     
 }

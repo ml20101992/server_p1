@@ -18,14 +18,22 @@ class UserController{
         else return false; 
     }
 
+    public function get_all_users(){
+        $query = 'SELECT * FROM server_user';
+        
+        return $this->db->select_object($query,[],'User');  
+    }
+
     public function get_user_by_username($username){
         $query      = "SELECT * FROM server_user WHERE username=?";
         return $this->db->select_object($query,[$username],'User');
 
     }
 
-    public function search_users($search_options){
+    public function get_users_by_value($keys, $values){
+        $query = 'SELECT * FROM server_user WHERE '.DatabaseHelpers::configure_update_parameters($keys);
 
+        return $this->db->select_object($query,$values,'User');
     }
 
     public function modify_user($new_user,$old_username){

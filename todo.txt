@@ -1,0 +1,5 @@
+databaseController -> zavrsit selectColumn i transaction
+teamController     -> zavrsit modify_team
+
+ADMIN VIEW:
+    user -> zavrsit vise manje sve osim dodavanja usera vizualno, dodat actual functionality (add vizualni gotov, dodat functionality u form...)

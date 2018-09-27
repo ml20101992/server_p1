@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.form-center{
+    position: absolute;
+    top: 30vh;
+    left: 35vw;
+    border: 1px solid black;
+    width: 30vw;
+    /* height: 30vh; */
+    display: flex;
+    flex-direction: column;
+    padding: 2% 4%;
+}
+
+.form-title{
+    margin: 0 auto;
+}
+
+.form-center form{
+    display: flex;
+    flex-direction: column;
+}
+
+input.button{
+    width: 5vw !important;
+    margin: 3% auto !important;
+}
+
+.form-center form input{
+    margin: 3% 4%;
+    width: 90%;
+}
+
+.error-message{
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+
+}
+
+/* Global Navigation */
+nav{
+    width: 100vw;
+    height: 5vh;
+    border: 1px solid black;
+    display: flex;
+}
+
+.nav-links{
+    width: 75%;
+    border: 1px solid black;
+    display: inherit;
+    flex-direction: row;
+    padding-left: 3%;
+}
+
+.user-options{
+    display: inherit;
+    flex-direction: row;
+
+}
+
+.nav-element{
+    width: 10vw;
+    height: auto;
+    margin-right: 3%;
+    border: 1px solid black;  
+    justify-content: center; 
+    align-items: center;
+    display: inherit; 
+}
+
+a.nav-element{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+a.nav-element:hover{
+    background-color: lightsalmon;
+}
+
+/* sidenav panel and controls */
+.content{
+    display: flex;
+    flex-direction: row;
+    height: 95vh;
+}
+
+#content_iframe{
+    width: 80vw;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.sidebar{
+    width: 20vw;
+    min-height: 100%;
+    border: 1px solid black;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column; 
+}
+
+.sidebar-element{
+    display: inherit;
+    padding-top: 3%;
+    align-content: center;
+    flex-direction: column;
+
+}
+
+.sidebar-element-toggle{
+    cursor: pointer;
+}
+
+.sidebar-controls{
+    display: inherit;
+    padding-bottom: 2px;
+    align-content: center;
+    flex-direction: column;
+}
+
+.sidebar-button{
+    display: inherit;
+    margin: 2px auto 0 auto;
+    width: 80%;
+    background-color: lightpink;
+    border: 1px solid black;
+}
+
+.collapsed{
+    display: none;
+}
+
+/* STANDARD FORMS */
+.standard-form{
+    display: inherit;
+    width: 40vw;
+    justify-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 15% auto 0 auto;
+}
+
+/* MISCELLANEOUS */
+.content-flex{
+    display:flex;
+    align-items: center;
+    justify-items: center;
+    width: 100%;    
+}

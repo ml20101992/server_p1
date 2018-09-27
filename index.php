@@ -5,8 +5,7 @@ error_reporting(E_ALL);
 
 require_once ('resources/autoload.php');
 
-$db = new DatabaseController();
 
 
-echo password_hash('mateo123',PASSWORD_DEFAULT);
+header("Location: pages/login.php");
 ?>

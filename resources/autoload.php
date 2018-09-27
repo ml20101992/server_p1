@@ -5,25 +5,28 @@ spl_autoload_register(function($class){
     $base_dir = __dir__;
     
     $prefixes = [
-        "DatabaseController"        => "/controllers/db_controllers/",
-        "DatabaseHelpers"        => "/controllers/db_controllers/",
-        "UserController"            => "/controllers/model_controllers/",
-        "Model"                     => "/models/",
-        "User"                      => "/models/"
+        "db_controllers"            => "/controllers/db_controllers/",
+        "auth_controllers"          => "/controllers/auth_controllers/",
+        "model_controllers"         => "/controllers/model_controllers/",
+        "view_controllers"          => "/controllers/view_controllers/",
+        "models"                    => "/models/",
+        "views"                     => "/views/"
     ];
      
-            
-    //normalize class name
-    $class_filename = $base_dir . $prefixes[$class] . str_replace('\\', '/', $class ) . '.php';
+    
+    foreach($prefixes as $prefix){
+        //normalize class name
+        $class_filename = $base_dir . $prefix . str_replace('\\', '/', $class ) . '.php';
 
-    //require class
-    if(file_exists( $class_filename ) ) {
-        require_once ($class_filename);
+        //require class
+        if(file_exists($class_filename) ) {
+            require_once ($class_filename);
         return;
+        }
                                    
     }
-
-    //return;
+    
+    return;
         
           
 

@@ -41,14 +41,27 @@ class DatabaseController{
         $statement->setFetchMode(PDO::FETCH_CLASS,$class);
         
         try{
-            //check if there are returns
-            $result = $statement->fetch();
-            if($result === false){             //no results
-                return false;
+            // //check if there are returns
+            // $result = $statement->fetch();
+            // if($result === false){             //no results
+            //     return false;
+            // }
+            // else{                                                       //results found
+            //     $return_value = array();
+            //     while($result->hasNext()){
+            //         array_push($result);
+            //     }
+            // }
+            $return_value = array();
+            
+            //construct an array holding the requested objects
+            while($row = $statement->fetch()){
+                array_push($return_value,$row);
             }
-            else{                                                       //results found
-                return $result;
-            }
+
+            if(sizeof($return_value) == 0) return false;
+            else return $return_value;
+
         }catch(\PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
@@ -71,6 +84,13 @@ class DatabaseController{
         }
 
         return true;
+
+    }
+
+    /**
+     * Format $query_sequence 'pos'=>['query'=>q, 'values'=>v]
+     */
+    public function transaction($query_sequence){
 
     }
 }
