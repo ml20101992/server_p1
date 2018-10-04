@@ -17,6 +17,11 @@ class TeamController{
         else return false; 
     }
 
+    public function get_team_by_team_name($team_name){
+        $query      = "SELECT * FROM server_team WHERE name=?";
+        return $this->db->select_object($query,[$username],'Team')[0];
+    }
+
     public function get_all_teams(){
         $query = 'SELECT * FROM server_team';
         

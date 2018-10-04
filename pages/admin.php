@@ -11,7 +11,7 @@ $admin_config = new AdminConfig(1);
 
 
 $scaffold->generate_header();
-$scaffold->generate_navigation('mateo',1);
+$scaffold->generate_navigation($_SESSION['session_data']['username'],$_SESSION['session_data']['user_role']);
 
 $admin_config->init_content();
 

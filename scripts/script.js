@@ -1,6 +1,8 @@
 var sidenav_togglers = document.getElementsByClassName('sidebar-element-toggle');
 var iframe_sources = {
-    'user_add':'../resources/views/admin/user/add.php'
+    'user_add'      : '../resources/views/admin/user/add.php',
+    'user_modify'   : '../resources/views/admin/user/modify.php',
+    'user_overview' : '../resources/views/admin/user/overview.php'
 }
 
 if(sidenav_togglers.length > 0){
@@ -24,4 +26,26 @@ function expand(element){
 function iframeChangeSource(source){
     let target = iframe_sources[source];
     document.getElementById('content_iframe').src = target;    
+}
+
+function ajaxGetRequest(resource_url,success_function,fail_function){
+    $.ajax({
+        url             :resource_url,
+        contentType     :'json',
+        success         :function(result){
+            success_function(result);
+        },
+        error           :function(){
+            fail_function();
+        }
+    }
+    );
+}
+
+function success(result){
+    console.log(result);
+}
+
+function fail(){
+    console.log("Request failed");
 }

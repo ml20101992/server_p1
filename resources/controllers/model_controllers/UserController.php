@@ -26,12 +26,18 @@ class UserController{
 
     public function get_user_by_username($username){
         $query      = "SELECT * FROM server_user WHERE username=?";
-        return $this->db->select_object($query,[$username],'User');
+        return $this->db->select_object($query,[$username],'User')[0];
 
     }
 
     public function get_users_by_value($keys, $values){
         $query = 'SELECT * FROM server_user WHERE '.DatabaseHelpers::configure_update_parameters($keys);
+
+        return $this->db->select_object($query,$values,'User');
+    }
+
+    public function get_users_by_selector_query($selector_query,$values){
+        $query = 'SELECT * FROM server_user WHERE '.$selector_query;
 
         return $this->db->select_object($query,$values,'User');
     }

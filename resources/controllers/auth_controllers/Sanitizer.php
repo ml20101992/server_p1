@@ -1,17 +1,12 @@
 <?php
 class Sanitizer{
-    private $validation_filters = [
-        'username'          => ''
-    ];
-    public function __construct(){
-
-    }
-
     public static function sanitize($value, $filter){
-        $return_value = Sanitizer::escape($value,$filter);
+        // var_dump($value);
+        // $return_value = Sanitizer::escape($value,$filter);
 
 
-        return Sanitizer::validate($return_value,$filter);
+        // return Sanitizer::validate($return_value,$filter);
+        return $value;
     }
 
     private static function escape($value, $filter){

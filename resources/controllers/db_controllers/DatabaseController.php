@@ -41,17 +41,6 @@ class DatabaseController{
         $statement->setFetchMode(PDO::FETCH_CLASS,$class);
         
         try{
-            // //check if there are returns
-            // $result = $statement->fetch();
-            // if($result === false){             //no results
-            //     return false;
-            // }
-            // else{                                                       //results found
-            //     $return_value = array();
-            //     while($result->hasNext()){
-            //         array_push($result);
-            //     }
-            // }
             $return_value = array();
             
             //construct an array holding the requested objects
@@ -63,7 +52,9 @@ class DatabaseController{
             else return $return_value;
 
         }catch(\PDOException $e){
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            // throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            // echo $e->getMessage();
+            return false;
         }
 
 
@@ -75,12 +66,15 @@ class DatabaseController{
 
     public function alter($query, $parameters){
         $statement = $this->db->prepare($query);
-        $statement->execute($parameters);
+        
 
         try{
+            $statement->execute($parameters);
             $statement->fetch();
         }catch(\PDOException $e){
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            // throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            // echo $e->getMessage();
+            return false;
         }
 
         return true;

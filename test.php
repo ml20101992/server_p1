@@ -24,8 +24,9 @@ require_once ('resources/autoload.php');
 
 // header("Location: resources/views/login.php");
 
-$team_controller = new TeamController();
-$teams = $team_controller->get_all_teams();
+// $team_controller = new TeamController();
+// $teams = $team_controller->get_all_teams();
 
-var_dump($teams);
+// var_dump($teams);
 
+phpinfo();

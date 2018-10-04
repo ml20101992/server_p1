@@ -16,11 +16,11 @@ class LoginController{
 
         if($user === false) return false;
 
-        $pw_hash = $user->get_pw_hash();
+        $pw_hash = $user[0]->get_pw_hash();
 
         $pw_valid = password_verify($password,$pw_hash);
 
-        if($pw_valid) return $user;
+        if($pw_valid) return $user[0];
         else return false;
     }
 }

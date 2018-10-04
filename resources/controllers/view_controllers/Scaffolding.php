@@ -44,6 +44,7 @@ class Scaffolding{
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title><?php echo $this->page_names[$this->page_name] ?></title>
             <link rel="stylesheet" type="text/css" href="<?php echo $this->file_location?>css/style.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         </head>
 
         <body>
@@ -80,18 +81,23 @@ class Scaffolding{
     <?php
     }
 
-    private function generate_select_option($value,$name){
+    private function generate_select_option($value,$name, $selected){
     ?>
-        <option value="<?php echo $value; ?>"><?php echo $name; ?></option>
+
+        <option value="<?php echo $value; ?>" <?php if ($selected) echo 'selected' ?>><?php echo $name; ?></option>
 
     <?php
     }
 
-    public function generate_select($model_array){
+    public function generate_select($model_array,$selected){
         echo '<option value="null" type="hidden"></option>';
+        $count = 0;
 
         foreach($model_array as $model){
-            $this->generate_select_option($model->get_id(),$model->get_name());
+            if($selected != null && $count == $selected ){
+                $this->generate_select_option($model->get_id(),$model->get_name(),true);
+            }
+            else $this->generate_select_option($model->get_id(),$model->get_name(),false);
         }
     }
 

@@ -30,8 +30,8 @@ class AdminConfig{
             <div class='holder collapsed'>
                 <div class='sidebar-controls'>
                     <button class='sidebar-button' onclick="iframeChangeSource('user_add')">Add New User</button>
-                    <button class='sidebar-button'>View Existing Users</button>
-                    <button class='sidebar-button'>Edit Own User Data</button>
+                    <button class='sidebar-button' onclick="iframeChangeSource('user_overview')">View Existing Users</button>
+                    <button class='sidebar-button' onclick="iframeChangeSource('user_modify')">Edit Own User Data</button>
                 </div>
             </div>
         </fieldset>
