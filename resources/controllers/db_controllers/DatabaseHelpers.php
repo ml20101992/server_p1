@@ -26,13 +26,20 @@ class DatabaseHelpers{
         return $param_string;
     }
 
-    public static function configure_update_parameters($keys){
+    public static function configure_update_parameters($keys,$values){
         $update_params = "";
+        $index = 0;
         foreach($keys as $key){
-            $update_params .= $key .' = ?,';
+            if($values[$index] !== "null"){
+                $update_params .= $key .' = ?, ';
+            }
+            else{
+                unset($key);
+            }
+            $index++;
         }
 
-        $update_params = substr($update_params,0,-1);
+        $update_params = substr($update_params,0,-2);
 
         return $update_params;
     }

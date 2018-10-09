@@ -48,9 +48,14 @@ class UserController{
         $values     = $params['values'];
         
         $query      = 'UPDATE server_user SET '.
-                      DatabaseHelpers::configure_update_parameters($keys).
+                      DatabaseHelpers::configure_update_parameters($keys,$values).
                       ' WHERE username = ?';
 
+        foreach($values as $key=>$value){
+            if($value === 'null'){
+                unset($values[$key]);
+            }
+        }
         array_push($values,$old_username);
 
         return $this->db->alter($query,$values);

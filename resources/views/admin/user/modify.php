@@ -42,9 +42,9 @@ $scaffold->generate_header();
         echo '<p class="error-message">'.$message.'</p>';
     }
 
-    if(isset($_GET['status']) && $_GET['status'] === 'ok') echo '<p class="ok-message">User Created.</p>';
+    if(isset($_GET['status']) && $_GET['status'] === 'ok') echo '<p class="ok-message">User Modified.</p>';
 ?>
-    
+    <?php if(isset($_GET['ref']) && $_GET['ref'] === "overview") echo '<a href="overview.php" >Back to Overview</a> '; ?>
     <div class='content-flex'>
         <form class='standard-form' method='post' action='../../../endpoints/admin/user/modify_user.php'>
             <h4 class="form-title">Modify existing user</h4>
@@ -88,7 +88,7 @@ $scaffold->generate_header();
                 </select>
             </fieldset>
 
-            <input type='submit' value='Add User'>
+            <input type='submit' value='Modify User'>
         </form>
     </div>
 <?php

@@ -61,5 +61,9 @@ class User implements Model{
     public function get_league(){
         return $this->league;
     }
+
+    public function set_hash($hash){
+        $this->password = $hash;
+    }
     
 }

@@ -14,8 +14,10 @@ $scaffold = new Scaffolding('views');
 
 $scaffold->generate_header();
 ?>
+    <div id="main-content">
 
-    <script src="../../../../scripts/overview.js">
+    </div>
+    <script src="../../../../scripts/overview.js"></script>
 <?php
 $scaffold->generate_footer();
 ?>

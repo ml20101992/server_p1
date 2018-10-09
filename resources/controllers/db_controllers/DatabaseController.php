@@ -66,18 +66,19 @@ class DatabaseController{
 
     public function alter($query, $parameters){
         $statement = $this->db->prepare($query);
+        //napravi rucni bind
         
 
         try{
-            $statement->execute($parameters);
-            $statement->fetch();
+            return $statement->execute($parameters);
+
+            // $statement->fetch();
         }catch(\PDOException $e){
-            // throw new \PDOException($e->getMessage(), (int)$e->getCode());
-            // echo $e->getMessage();
-            return false;
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            echo $e->getMessage();
         }
 
-        return true;
+        return false;
 
     }
 
