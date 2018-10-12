@@ -45,19 +45,37 @@ switch($role){
 $users = array_slice($users,$page*10,10);
 $count = sizeof($users);
 
-$sanitized_array = array();
+$final_data = array();
 
 foreach($users as $user){
-    $data = $user->db_config();
+    $data = array();
+    $data['username'] = $user->get_username();
 
-    $saved = array();
+    $role_ctrl = new RoleController();
+    $role = $role_ctrl->get_role_name($user->get_role());
+    $data['role'] = $role->get_role_name();
+
     
-    for($i = 0; $i < sizeof($data['keys']); $i++){
-        $saved[$data['keys'][$i]] = $data['values'][$i];
-    }
-    unset($saved['password']);
+    $team_ctrl = new TeamController();
+    $team = $team_ctrl->get_team_by_id($user->get_team());
 
-    array_push($sanitized_array,$saved);
+    if($team !== null){
+        $data['team'] = $team->get_name();
+    }
+    else{
+        $data['team'] = 'None Set';
+    }
+
+    $league_ctrl = new LeagueController();
+    $league = $league_ctrl->get_league_by_id($user->get_league());
+
+    if($league !== null){
+        $data['league'] = $league->get_name();
+    }else{
+        $data['league'] = 'None Set'; 
+    }
+
+    array_push($final_data,$data);
 }
 
-echo json_encode(['count'=>$count, 'data'=> $sanitized_array]);
+echo json_encode(['count'=>$count, 'data'=> $final_data]);

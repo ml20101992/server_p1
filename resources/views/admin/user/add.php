@@ -1,9 +1,9 @@
 <?php
 require_once('../../../autoload.php');
 $session = new Session();
-// if(!$session->check_if_valid()){
-//     header("Location: login.php=?error=request-login");
-// }
+if(!$session->check_if_valid()){
+    header("Location: login.php=?error=request-login");
+}
 
 $scaffold = new Scaffolding("views");
 $team_ctrl = new TeamController();
@@ -80,6 +80,7 @@ $scaffold->generate_header();
             <input type='submit' value='Add User'>
         </form>
     </div>
+    
 <?php
 
 $scaffold->generate_footer();

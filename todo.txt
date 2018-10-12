@@ -4,3 +4,5 @@ teamController     -> zavrsit modify_team
 ADMIN VIEW:
     user -> zavrsit vise manje sve osim dodavanja usera vizualno, dodat actual functionality (add vizualni gotov, dodat functionality u form...)
          -> formu sklepaj css kako treba, bode mi oci
+
+SCAFFOLDING PROMJENI SELECTOVE ZA TIM DA RADE OVISNO O LIGI

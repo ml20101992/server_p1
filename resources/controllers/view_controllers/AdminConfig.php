@@ -20,7 +20,7 @@ class AdminConfig{
 
     private function create_side_nav(){
         $this->create_sidenav_user_elements();
-        $this->create_sidenav_sport_elements();
+        if($this->role == 1) $this->create_sidenav_sport_elements();
     }
 
     private function create_sidenav_user_elements(){
@@ -29,8 +29,8 @@ class AdminConfig{
             <legend id='user' class="sidebar-element-toggle">User Controls</legend>
             <div class='holder collapsed'>
                 <div class='sidebar-controls'>
-                    <button class='sidebar-button' onclick="iframeChangeSource('user_add')">Add New User</button>
-                    <button class='sidebar-button' onclick="iframeChangeSource('user_overview')">View Existing Users</button>
+                    <?php if ($this->role < 5){ ?><button class='sidebar-button' onclick="iframeChangeSource('user_add')">Add New User</button><?php } ?>
+                    <?php if ($this->role < 5){ ?><button class='sidebar-button' onclick="iframeChangeSource('user_overview')">View Existing Users</button><?php } ?>
                     <button class='sidebar-button' onclick="iframeChangeSource('user_modify')">Edit Own User Data</button>
                 </div>
             </div>
@@ -46,8 +46,8 @@ class AdminConfig{
             <legend id='sport' class="sidebar-element-toggle">Sport Controls</legend>
             <div class='holder collapsed'>
                 <div class='sidebar-controls'>
-                    <button class='sidebar-button'>Add New Sport</button>
-                    <button class='sidebar-button'>View Existing Sports</button>
+                    <button class='sidebar-button' onclick="iframeChangeSource('sport_add')">Add New Sport</button>
+                    <button class='sidebar-button' onclick="iframeChangeSource('sport_overview')">View Existing Sports</button>
                 </div>
             </div>
         </fieldset>

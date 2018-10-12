@@ -61,6 +61,13 @@ class UserController{
         return $this->db->alter($query,$values);
     }
 
+    public function delete_user($username){
+        $query = "DELETE FROM server_user WHERE username = ?";
+        $params = [$username];
+
+        return $this->db->alter($query,$params);
+    }
+
 
 }
 ?>

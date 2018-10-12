@@ -20,7 +20,7 @@ if(isset($_GET['error'])){
             <h3><?php
                 $message = "";
                 switch($_GET['error']){
-                    case "deletion_failed": $message = "User Delete Failed";
+                    case "deletion_failed": $message = "Sport Delete Failed";
                         break;
                     default: "Unknown error";
                         break; 
@@ -31,7 +31,10 @@ if(isset($_GET['error'])){
     <?php
 }
 
-if(isset($_GET['status']) && $_GET['status'] === 'ok') echo '<p class="ok-message">User Deleted.</p>';
+if(isset($_GET['status']) && $_GET['status'] === 'ok'){
+    if($_GET['type'] === 'delete') echo '<p class="ok-message">Sport Deleted.</p>';
+    else if($_GET['type'] === 'modify') echo '<p class="ok-message">Sport Modified.</p>';
+}
 
 ?>
     <div id="main-content">

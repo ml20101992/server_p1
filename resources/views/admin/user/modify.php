@@ -35,6 +35,8 @@ $scaffold->generate_header();
                 break;
             case "username-taken":$message = "Username is taken";
                 break;
+            case "invalid_value": $message = "Invalid value";
+                break;
             default: $message = 'Unknown error';
                 break;
         }

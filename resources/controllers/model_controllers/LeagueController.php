@@ -48,6 +48,13 @@ class LeagueController{
         return $this->db->alter($query,$values);
     }
 
+    public function get_league_by_id($id){
+        $query = "SELECT * FROM server_league WHERE id = ?";
+        $param = [$id];
+
+        return $this->db->select_object($query, $param, "League")[0];
+    }
+
 }
 
 ?>

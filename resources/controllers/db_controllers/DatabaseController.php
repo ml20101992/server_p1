@@ -65,20 +65,25 @@ class DatabaseController{
     }
 
     public function alter($query, $parameters){
-        $statement = $this->db->prepare($query);
-        //napravi rucni bind
-        
+        $statement = $this->db->prepare($query);      
 
         try{
-            return $statement->execute($parameters);
-
+            if(sizeof($parameters) === 0){
+                return $statement->execute($parameters);
+            }else{
+                $count = 1;
+                foreach($parameters as $parameter){
+                    $this->bindParams($statement,$parameter,$count);
+                    $count++;
+                }
+                return $statement->execute();        
+            }
             // $statement->fetch();
         }catch(\PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
             echo $e->getMessage();
         }
 
-        return false;
 
     }
 
@@ -88,6 +93,20 @@ class DatabaseController{
     public function transaction($query_sequence){
 
     }
+
+    private function bindParams($statement, $param, $param_pos){
+        $param_type = null;
+        switch($type = gettype($param)){
+            case "integer": $param_type = PDO::PARAM_INT;
+                break;
+            case "string": $param_type = PDO::PARAM_STR;
+                break;
+            default: return;    
+        }
+
+        $statement->bindParam($param_pos, $param, $param_type);
+    }
+
 }
 
 

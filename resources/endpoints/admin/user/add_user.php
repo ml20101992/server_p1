@@ -41,6 +41,33 @@ if($role >=3 && (!$team || $team === 'null')){
 if(!$team || $team = 'null') $team = null;
 if(!$league || $league = 'null') $league = null;
 
+//check if the role exists
+if($role > 5 || $role < 1){
+    header("Location: ../../../views/admin/user/add.php?error=invalid_value");
+    return;
+}
+
+//check if the selected team/league combo exists
+if($league != 'null'){
+    $league_ctrl = new LeagueController();
+    $league = $league_ctrl->get_league_by_id($league);
+
+    if($league == null){          //there is no league with that id
+        header("Location: ../../../views/admin/user/add.php?error=invalid_value");
+        return;
+    }
+}
+
+if($team !== 'null'){
+    $team_ctrl = new TeamController();
+    $team = $team_ctrl->get_team_by_id($team);
+
+    if($team == null || $team->get_league !== $league){          //there is no team with that id
+        header("Location: ../../../views/admin/user/add.php?error=invalid_value");
+        return;
+    }
+}
+
 //var_dump([$username,$password,$role,$team,$league]);
 
 $user_ctrl = new UserController();

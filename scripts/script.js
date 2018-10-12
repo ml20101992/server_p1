@@ -2,7 +2,9 @@ var sidenav_togglers = document.getElementsByClassName('sidebar-element-toggle')
 var iframe_sources = {
     'user_add'      : '../resources/views/admin/user/add.php',
     'user_modify'   : '../resources/views/admin/user/modify.php',
-    'user_overview' : '../resources/views/admin/user/overview.php'
+    'user_overview' : '../resources/views/admin/user/overview.php',
+    'sport_add'     : '../resources/views/admin/sport/add.php',
+    'sport_overview': '../resources/views/admin/sport/overview.php'
 }
 
 if(sidenav_togglers.length > 0){

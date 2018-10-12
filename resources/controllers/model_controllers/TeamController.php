@@ -41,6 +41,13 @@ class TeamController{
 
     }
 
+    public function get_team_by_id($id){
+        $query = "SELECT * FROM server_team WHERE id = ?";
+        $param = [$id];
+
+        return $this->db->select_object($query, $param, "Team")[0];
+    }
+
 
 
 }
