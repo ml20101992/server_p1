@@ -24,6 +24,11 @@ function parseLocation(){
             endpoint = "http://localhost/faks/server/p1/resources/endpoints/admin/sport/overview.php?page="
             success_function = createSportOverview;
         }break;
+
+        case "season":{
+            endpoint = "http://localhost/faks/server/p1/resources/endpoints/admin/season/overview.php?page="
+            success_function = createSeasonOverview;
+        }
     }
 }
 
@@ -119,6 +124,65 @@ function createSportRow(sport){
 }
 
 //END SPORTS
+
+//SEASON
+function createSeasonOverview(data){
+    data = JSON.parse(data);
+    
+    let table = document.createElement('table');
+    table.border = 1;
+
+    let header = document.createElement('tr');
+    header.innerHTML = "<th>DESCRIPTION</th><th>YEAR</th><th></th><th></th>";
+
+    table.appendChild(header);
+    
+    for(let sport of data.data){
+        let row = createSeasonRow(sport);
+        table.appendChild(row);
+    }
+
+    document.getElementById("main-content").appendChild(table); 
+}
+
+function createSeasonRow(season){
+    let row = document.createElement('tr');
+    let name = document.createElement('td');
+        name.appendChild(document.createTextNode(season.description));
+
+    let year = document.createElement('td');
+        year.appendChild(document.createTextNode(season.year));
+    
+    let modify = document.createElement('a');
+        modify.appendChild(document.createTextNode("Modify"));
+        modify.href = "modify.php?ref=overview&id="+season.id;
+        modify.classList.add('button');
+
+    let delete_btn = document.createElement('a');
+        delete_btn.appendChild(document.createTextNode("Delete"));
+        delete_btn.href = "../../../endpoints/admin/season/delete.php?id="+season.id;
+        delete_btn.classList.add('button');
+    
+    let cell = document.createElement('td');
+    row.appendChild(cell.appendChild(name));
+
+    cell = document.createElement('td');
+    row.appendChild(cell.appendChild(year));
+
+    cell = document.createElement('td');
+    row.appendChild(cell.appendChild(modify));
+
+    cell = document.createElement('td');
+    row.appendChild(cell.appendChild(delete_btn));
+    return row;
+
+}
+
+
+//END SEASON
+
+
+//MISC
 
 function fail(){
     console.log("Ajax Error");

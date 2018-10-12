@@ -21,6 +21,7 @@ class AdminConfig{
     private function create_side_nav(){
         $this->create_sidenav_user_elements();
         if($this->role == 1) $this->create_sidenav_sport_elements();
+        if($this->role < 3) $this->create_sidenav_season_elements();
     }
 
     private function create_sidenav_user_elements(){
@@ -54,5 +55,21 @@ class AdminConfig{
     
     <?php /*HTML END*/ 
     }
+
+    private function create_sidenav_season_elements(){
+        // HTML BEGIN ?>
+    <fieldset class="sidebar-element">
+        <legend id='sport' class="sidebar-element-toggle">Sport Controls</legend>
+        <div class='holder collapsed'>
+            <div class='sidebar-controls'>
+                <button class='sidebar-button' onclick="iframeChangeSource('season_add')">Add New Season</button>
+                <button class='sidebar-button' onclick="iframeChangeSource('season_overview')">View Existing Seasons</button>
+            </div>
+        </div>
+    </fieldset>
+
+<?php /*HTML END*/ 
+}
+    
 }
 ?>
