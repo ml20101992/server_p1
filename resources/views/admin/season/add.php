@@ -7,27 +7,8 @@ if(!$session->check_if_valid()){
 
 $scaffold = new Scaffolding("views");
 $scaffold->generate_header();
-if(isset($_GET['error'])){
-    $message = "";
 
-    switch ($_GET['error']){
-        case "desc-not-set":{
-            $message = "Description Not Set";
-        }break;
-
-        case "year-not-set":{
-            $message = "Year not set.";
-        }break;
-        case "name-taken": $message = "Season Already Exists";
-            break;
-        default: $message = 'Unknown error';
-            break;
-    }
-
-    echo '<p class="error-message">'.$message.'</p>';
-}
-
-if(isset($_GET['status']) && $_GET['status'] === 'ok') echo '<p class="ok-message">Season Created.</p>';
+s
 
 ?>
     <div class='content-flex'>

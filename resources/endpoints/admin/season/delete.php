@@ -14,14 +14,20 @@ if($role > 2) die('Insufficient permissions');
 
 $id = Sanitizer::sanitize($_GET['id'],'select_int');
 
-$season_ctrl = new SeasonController();
-$check = $season_ctrl->delete_season($id);
 
-if(!$check){
-    header("Location: ../../../views/admin/season/overview.php?error=unknown");
-    return;
+//first delete slseason containing that season
+$sls_ctrl = new SLSController();
+$check = $sls_ctrl->cascade_season($id);
+
+if($check){
+    $season_ctrl = new SeasonController();
+    $check_del = $season_ctrl->delete_season($id);
+
+    if($check_del){
+        header("Location: ../../../views/admin/season/overview.php?status=ok&type=delete");
+        return;
+    }
 }
-else {
-    header("Location: ../../../views/admin/season/overview.php?status=ok&type=delete");
-    return;
-}
+
+header("Location: ../../../views/admin/season/overview.php?error=unknown");
+return;

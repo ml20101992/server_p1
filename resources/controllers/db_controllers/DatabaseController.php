@@ -33,9 +33,6 @@ class DatabaseController{
     }
 
     public function select_object($query, $parameters, $class){
-        // var_dump($query);
-        // return;
-
         $statement = $this->db->prepare($query);
         $statement->execute($parameters);
         $statement->setFetchMode(PDO::FETCH_CLASS,$class);
@@ -52,8 +49,8 @@ class DatabaseController{
             else return $return_value;
 
         }catch(\PDOException $e){
-            // throw new \PDOException($e->getMessage(), (int)$e->getCode());
-            // echo $e->getMessage();
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            echo $e->getMessage();
             return false;
         }
 
@@ -82,6 +79,7 @@ class DatabaseController{
         }catch(\PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
             echo $e->getMessage();
+            return false;
         }
 
 

@@ -14,14 +14,19 @@ if($role !== 1) die('Insufficient permissions');
 
 $id = Sanitizer::sanitize($_GET['id'],'select_int');
 
-$sport_ctrl = new SportController();
-$check = $sport_ctrl->delete_sport($id);
+$sls_ctrl = new SLSController();
+$check = $sls_ctrl->cascade_sport($id);
 
-if(!$check){
-    header("Location: ../../../views/admin/sport/overview.php?error=unknown");
-    return;
+if($check){
+    $sport_ctrl = new SportController();
+    $check_del = $sport_ctrl->delete_sport($id);
+
+    if(!$check_del){
+        header("Location: ../../../views/admin/sport/overview.php?status=ok&type=delete");
+        return;
+    }
 }
-else {
-    header("Location: ../../../views/admin/sport/overview.php?status=ok&type=delete");
-    return;
-}
+
+
+header("Location: ../../../views/admin/sport/overview.php?error=unknown");
+return;

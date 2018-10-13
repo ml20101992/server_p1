@@ -6,7 +6,10 @@ var iframe_sources = {
     'sport_add'         : '../resources/views/admin/sport/add.php',
     'sport_overview'    : '../resources/views/admin/sport/overview.php',
     'season_add'        : '../resources/views/admin/season/add.php',
-    'season_overview'   : '../resources/views/admin/season/overview.php'
+    'season_overview'   : '../resources/views/admin/season/overview.php',
+    'sls_add'           : '../resources/views/admin/sls/add.php',
+    'sls_overview'      : '../resources/views/admin/sls/overview.php'
+
 }
 
 if(sidenav_togglers.length > 0){

@@ -28,7 +28,12 @@ function parseLocation(){
         case "season":{
             endpoint = "http://localhost/faks/server/p1/resources/endpoints/admin/season/overview.php?page="
             success_function = createSeasonOverview;
-        }
+        }break;
+
+        case "sls":{
+            endpoint = "http://localhost/faks/server/p1/resources/endpoints/admin/sls/overview.php?page="
+            success_function = createSLSOverview;
+        }break
     }
 }
 
@@ -180,6 +185,67 @@ function createSeasonRow(season){
 
 
 //END SEASON
+
+//SLS
+function createSLSOverview(data){
+    data = JSON.parse(data);
+
+    let table = document.createElement('table');
+    table.border = 1;
+
+    let header = document.createElement('tr');
+    header.innerHTML = "<th>SPORT</th><th>LEAGUE</th><th>SEASON</th><th></th>";
+
+    table.appendChild(header);
+    
+    for(let sls of data.data){
+        let row = createSLSRow(sls);
+        table.appendChild(row);
+    }
+
+    document.getElementById("main-content").appendChild(table); 
+}
+
+function createSLSRow(data){
+    let row = document.createElement('tr');
+    let sport = document.createElement('td');
+        sport.appendChild(document.createTextNode(data.sport.name));
+
+    let league = document.createElement('td');
+        league.appendChild(document.createTextNode(data.league.name));
+
+    let season = document.createElement('td');
+        season.appendChild(document.createTextNode(data.season.name));
+    
+    let modify = document.createElement('a');
+        modify.appendChild(document.createTextNode("Modify"));
+        modify.href = "modify.php?ref=overview&sport="+data.sport.id+"&league="+data.league.id+"&season="+data.season.id;
+        modify.classList.add('button');
+
+    let delete_btn = document.createElement('a');
+        delete_btn.appendChild(document.createTextNode("Delete"));
+        delete_btn.href = "../../../endpoints/admin/sls/delete.php?sport="+data.sport.id+"&league="+data.league.id+"&season="+data.season.id;
+        delete_btn.classList.add('button');
+    
+    let cell = document.createElement('td');
+    row.appendChild(cell.appendChild(sport));
+
+    cell = document.createElement('td');
+    row.appendChild(cell.appendChild(league));
+
+    cell = document.createElement('td');
+    row.appendChild(cell.appendChild(season));
+
+    cell = document.createElement('td');
+    row.appendChild(cell.appendChild(modify));
+
+    cell = document.createElement('td');
+    row.appendChild(cell.appendChild(delete_btn));
+    return row;
+}
+
+
+//end sls
 
 
 //MISC

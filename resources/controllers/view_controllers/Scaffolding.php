@@ -101,6 +101,14 @@ class Scaffolding{
         }
     }
 
+    public function generate_non_null_option($model_array){
+        
+        foreach($model_array as $model){
+            $type = gettype($model);
+            echo '<option value="'.$model->get_id().'">'.(get_class($model)==="Season" ? $model->get_description() : $model->get_name()).'</option>';
+        }
+    }
+
 }
 
 ?>
