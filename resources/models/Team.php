@@ -39,6 +39,7 @@ class Team{
         $values = [
             $this->name,
             $this->mascot,
+            $this->sport,
             $this->league,
             $this->season,
             $this->picture,
@@ -63,6 +64,10 @@ class Team{
 
     public function get_mascot(){
         return $this->mascot;
+    }
+
+    public function get_sport(){
+        return $this->sport;
     }
 
     public function get_league(){

@@ -8,7 +8,11 @@ var iframe_sources = {
     'season_add'        : '../resources/views/admin/season/add.php',
     'season_overview'   : '../resources/views/admin/season/overview.php',
     'sls_add'           : '../resources/views/admin/sls/add.php',
-    'sls_overview'      : '../resources/views/admin/sls/overview.php'
+    'sls_overview'      : '../resources/views/admin/sls/overview.php',
+    'team_add'          : '../resources/views/admin/team/add.php',
+    'team_overview'     : '../resources/views/admin/team/overview.php',
+    'schedule_add'      : '../resources/views/admin/schedule/add.php',
+    'schedule_overview' : '../resources/views/admin/schedule/overview.php'
 
 }
 

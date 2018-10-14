@@ -22,7 +22,9 @@ if(isset($_GET['error'])){
             <h3><?php
                 $message = "";
                 switch($_GET['error']){
-                    case "deletion_failed": $message = "Season Delete Failed";
+                    case "deletion_failed": $message = "Team Delete Failed";
+                        break;
+                    case "modify_failed": $message = "Team Modify Failed";
                         break;
                     default: $message = "Unknown Error";
                         break; 
@@ -34,8 +36,8 @@ if(isset($_GET['error'])){
 }
 
 if(isset($_GET['status']) && $_GET['status'] === 'ok'){
-    if($_GET['type'] === 'delete') echo '<p class="ok-message">Season/League/Sport Deleted.</p>';
-    else if($_GET['type'] === 'modify') echo '<p class="ok-message">Sport/League/Season Modified.</p>';
+    if($_GET['type'] === 'delete') echo '<p class="ok-message">Team Deleted.</p>';
+    else if($_GET['type'] === 'modify') echo '<p class="ok-message">Team Modified.</p>';
 }
 
 ?>

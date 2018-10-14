@@ -17,10 +17,10 @@ class SLSController{
      * Format of the key is ['sport'=>$sport, 'league'=>$league, 'season'=>$season]
      */
     public function get_sls_by_key($key){
-        $query = "SELECT * FROM server_slseason SET sport = ? AND league = ? AND season = ?";
+        $query = "SELECT * FROM server_slseason WHERE sport = ? AND league = ? AND season = ?";
         $params = [$key['sport'],$key['league'],$key['season']];
 
-        return $this->db->select_object($query,$params,"SLS");
+        return $this->db->select_object($query,$params,"SLS")[0];
     }
 
     public function get_all_sls(){
