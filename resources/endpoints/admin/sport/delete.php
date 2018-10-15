@@ -18,12 +18,17 @@ $sls_ctrl = new SLSController();
 $check = $sls_ctrl->cascade_sport($id);
 
 if($check){
-    $sport_ctrl = new SportController();
-    $check_del = $sport_ctrl->delete_sport($id);
 
-    if(!$check_del){
-        header("Location: ../../../views/admin/sport/overview.php?status=ok&type=delete");
-        return;
+    $check = (new ScheduleController())->cascade_sport($id);
+
+    if($check){
+        $sport_ctrl = new SportController();
+        $check_del = $sport_ctrl->delete_sport($id);
+
+        if(!$check_del){
+            header("Location: ../../../views/admin/sport/overview.php?status=ok&type=delete");
+            return;
+        }
     }
 }
 

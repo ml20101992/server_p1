@@ -18,13 +18,16 @@ $team = (new TeamController())->get_team_by_id($id);
 if($role === 2 && ($team->get_league() !== $_SESSION['session_data']['user_league'])) die("Insufficient Permissions");
 
 
-$check = (new TeamController())->delete_team($id);
 
+$check = (new ScheduleController())->cascade_team(id);
 if($check){
-    header("Location: ../../../views/admin/team/overview.php?status=ok&type=delete");
-    return;
-}
+    $check = (new TeamController())->delete_team($id);
 
+    if($check){
+        header("Location: ../../../views/admin/team/overview.php?status=ok&type=delete");
+        return;
+    }
+}
 
 header("Location: ../../../views/admin/team/overview.php?error=unknown");
 return;

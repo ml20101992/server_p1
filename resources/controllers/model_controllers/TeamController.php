@@ -69,6 +69,12 @@ class TeamController{
         return $this->db->alter($query,[$id]);
     }
 
+    public function cascade_sls($sport, $league, $season){
+        $query = "DELETE FROM server_team WHERE sport = ? AND league = ? AND season = ?";
+
+        return $this->db->alter($query,[$sport, $league, $season]);
+    }
+
 
 
 }

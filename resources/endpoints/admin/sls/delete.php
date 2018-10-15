@@ -22,12 +22,19 @@ $sls_ctrl = new SLSController();
 $sls = new SLS();
 $sls->setValue($sport,$league,$season);
 
-$check = $sls_ctrl->delete_sls($sls);
-if($check){
-    header("Location: ../../../views/admin/sls/overview.php?status=ok&type=delete");
-    return;
 
+$check = (new ScheduleController())->cascade_sls($sport,$league,$season);
+if($check){
+    $check = (new TeamController())->cascade_sls($sport,$league,$season);
+    if($check){
+        $check = $sls_ctrl->delete_sls($sls);
+        if($check){
+            header("Location: ../../../views/admin/sls/overview.php?status=ok&type=delete");
+            return;
+
+        }
+    }
 }
 
-header("Location: ../../../views/admin/sls/overview.php?error=name-taken&type=modify");
+header("Location: ../../../views/admin/sls/overview.php?error=name-taken&type=delete");
 return;

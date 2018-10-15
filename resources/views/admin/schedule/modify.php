@@ -24,6 +24,28 @@ if(isset($_GET['error'])){
 
 if(isset($_GET['status']) && $_GET['status'] === 'ok') echo '<p class="ok-message">Schedule Entry Created.</p>';
 
+$keys = [
+    'sport','league','season','hometeam','awayteam','homescore','awayscore','scheduled','completed'
+];
+
+foreach($keys as $key){
+    if(!isset($_GET[$key])) die("Missing parameters");
+}
+
+//values...
+$sport = Sanitizer::sanitize($_GET['sport'],'select_int');
+$league = Sanitizer::sanitize($_GET['league'],'select_int');
+$season = Sanitizer::sanitize($_GET['league'],'select_int');
+$hometeam = Sanitizer::sanitize($_GET['hometeam'],"text");
+$awayteam = Sanitizer::sanitize($_GET['awayteam'],"text");
+$homescore = Sanitizer::sanitize($_GET['homescore'],"select_int");
+$awayscore = Sanitizer::sanitize($_GET['awayscore'],"select_int");
+$scheduled = Sanitizer::sanitize($_GET['scheduled'],"datetime");
+$completed = (integer)Sanitizer::sanitize($_GET['completed'],'bit');
+
+$old_data = [$sport, $league, $season, $hometeam, $awayteam,$homescore,$awayscore,$scheduled,$completed];
+$old_data = json_encode($old_data);
+
 
 $sls_col = (new SLSController())->get_all_sls();
 
@@ -45,8 +67,9 @@ foreach($sls_col as $sls){
 
 ?>
     <div class='content-flex'>
-        <form class='standard-form' method='post' action='../../../endpoints/admin/schedule/add.php'>
-            <h4 class="form-title">Add New Schedule</h4>
+        <form class='standard-form' method='post' action='../../../endpoints/admin/schedule/modify.php'>
+            <h4 class="form-title">Modify Schedule</h4>
+            <input type='hidden' name="old_data" value='<?php echo $old_data ?>'>
             <fieldset>
                 <legend>Sport/League/Season</legend>
                 <select name="sls" id="schedule_first">
@@ -63,30 +86,30 @@ foreach($sls_col as $sls){
                 <div id="schedule_remainder" class="collapsed">
                     <fieldset>
                         <legend>Home Score</legend>
-                        <input name="homescore">
+                        <input name="homescore" value="<?php echo $homescore ?>">
                     </fieldset>
 
                     <fieldset>
                         <legend>Away Score</legend>
-                        <input name="awayscore">
+                        <input name="awayscore" value="<?php echo $awayscore ?>">
                     </fieldset>
 
                     <fieldset>
                         <legend>Scheduled - format is YYYY-MM-DD HH:MM:SS</legend>
-                        <input name="scheduled">
+                        <input name="scheduled" value="<?php echo $scheduled ?>">
                     </fieldset>
 
                     <fieldset>
                         <legend>Completed</legend>
-                        <input name="completed" type="radio" value='0' checked>No
-                        <input name="completed" type="radio" value='1'>Yes
+                        <input name="completed" type="radio" value='0' <?php echo ($completed==0)?"checked":""?>>No
+                        <input name="completed" type="radio" value='1' <?php echo ($completed==1)?"checked":""?>>Yes
                     </fieldset>
                 </div>
 
                 
             </fieldset>
 
-            <input type='submit' value='Add Schedule'>
+            <input type='submit' value='Modify Schedule'>
         </form>
     </div>
 
